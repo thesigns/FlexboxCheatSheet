@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <title>Flexbox Cheet Sheet</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <style>
+body {
+    background: linear-gradient(120deg, hsl(0, 0%, 8%) 0%, hsl(0, 0%, 10%) 100%);
+    color: hsl(0, 0%, 48%);
+    margin: 40px;
+    display: flex;
+    justify-content: center;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5em;
+}
+
+a {
+    color: hsl(280, 20%, 65%);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+main {
+    columns: 2;
+}
+
+header {
+    padding: 0 20px 0 20px;
+    max-width: 260px;
+}
+
+header h1 {
+    margin: 0.2em 0 0.6em;
+    font-size: 56pt;
+    font-weight: 900;
+    line-height: 0.85em;
+    color: hsl(280, 70%, 40%);
+}
+
+header h1 span {
+    color: hsl(280, 70%, 30%);
+}
+
+header h1 span + span {
+    color: hsl(280, 70%, 20%);
+}
+
+article {
+    display: block;
+    break-inside: avoid-column;
+    width: auto;
+    min-width: 360px;
+    margin: 0 20px 40px;
+    padding: 35px;
+    border: 1px dashed hsl(200, 0%, 30%);
+}
+
+_:-ms-fullscreen, :root article {  /* IE11 hack */
+    width: 640px;
+}
+
+article h1 {
+    margin: 0;
+    font-weight: 500;
+    color: hsla(210, 0%, 80%, 1);
+}
+
+article h1 small {
+    font-weight: 400;
+    font-size: 8pt;
+    vertical-align: 8pt;
+}
+
+article p {
+    font-size: 12pt;
+    line-height: 1.35em;
+    font-size: 10.5pt;
+    line-height: 1.5em;
+}
+
+section.examples {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+section.example {
+    position: relative;
+    margin: 20px 40px 0 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+section.example h2 {
+    margin: 0 0 5px 2px;
+    font-size: 10.5pt;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: hsla(210, 0%, 80%, 1);
+    user-select: all;
+}
+
+div.flex-container {
+    background: hsl(280, 70%, 12%);
+    border: 3px groove hsl(280, 70%, 40%);
+    border-radius: 10px;
+    box-shadow: 4px 4px 8px hsl(280, 40%, 8%);
+    width: 275px;
+    height: 100px;
+    display: flex;
+}
+
+div.flex-item {
+    background: hsla(50, 100%, 50%, 1);
+    color: hsla(50, 100%, 35%, 1);
+    border: 2px outset hsla(50, 100%, 40%, 1);
+    border-radius: 7px;
+    box-shadow: 1px 1px 1px hsl(320, 70%, 8%);
+    font-weight: 900;
+    padding: 10px;
+}
+
+div.flex-item:nth-child(1) { font-size: 16pt; }
+div.flex-item:nth-child(2) { font-size: 24pt; }
+div.flex-item:nth-child(3) { font-size: 14pt; }
+div.flex-item:nth-child(4) { font-size: 36pt; }
+div.flex-item:nth-child(5) { font-size: 18pt; }
+div.flex-item:nth-child(6) { font-size: 21pt; }
+div.flex-item:nth-child(7) { font-size: 17pt; }
+div.flex-item:nth-child(7) { font-size: 33pt; }
+
+article.align-self div.flex-item:nth-child(3) {
+    background: hsla(180, 80%, 50%, 1);
+    color: hsla(180, 80%, 35%, 1);
+    border: 2px outset hsla(180, 80%, 40%, 1);
+}
+
+article.flex-wrap div.flex-container:nth-child(2) {
+    width: 70%;
+}
+
+@media screen and (min-width: 2200px) {
+    main {
+        columns: 3;
+    }
+}
+
+@media screen and (max-width: 1270px) {
+    main {
+        columns: auto;
+    }
+}
+
+@media screen and (max-width: 790px) {
+    body {
+        flex-direction: column;
+    }
+    header {
+        max-width: 100%;
+    }
+    article {
+        margin: 30px 0;
+    }
+}
+        </style>
+    </head>
+    <body>
+
+        <header>
+            <h1>Flexbox <span>Cheat</span> <span>Sheet</span></h1>
+            <p>(work in progress)</p>
+            <p>This cheat sheet is done entirely in HTML and CSS, which means you may see some differences in rendering, depending on which browser you use (especially if you use an old browser like Internet Explorer 11). This is done on purpose – here you can check in details how flexbox works in different browsers (or how it doesn't work). However, rememeber that <strong>whatever you SEE on this page may be incorrect according to web standards</strong>, because browsers have bugs – but the code is corret.</p>
+            <p>In the examples the violet element is the flex container and the golden elements are flex items.</p>
+            <p>The descriptions of the properties come <a href="https://www.w3.org/TR/css-flexbox-1/">from the W3C specification</a>.</p>
+            <p>🢂 <a href="https://github.com/thesigns/FlexboxCheetSheet">Gihub page of the project</a></p>
+            <p>Version 0.1 alpha</p>
+        </header>
+
+        <main>
+
+<!-- ---------------------- justify-content ---------------------- -->
+
+            <article class="justify-content">
+                <h1>justify-content</h1>
+                <p>The justify-content property aligns flex items along the main axis of the current line of the flex container. This is done after any flexible lengths and any auto margins have been resolved.</p>
+
+                <section class="examples">
+
+                    <section class="example">
+                        <h2>justify-content: flex-start</h2>
+                        <div class="flex-container" style="justify-content: flex-start">
+                            <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                        </div>
+                    </section>
+
+                    <section class="example">
+                        <h2>justify-content: flex-end</h2>
+                        <div class="flex-container" style="justify-content: flex-end">
+                            <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                        </div>
+                    </section>
+
+                    <section class="example">
+                        <h2>justify-content: center</h2>
+                        <div class="flex-container" style="justify-content: center">
+                            <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                        </div>
+                    </section>
+
+                    <section class="example">
+                        <h2>justify-content: space-between</h2>
+                        <div class="flex-container" style="justify-content: space-between">
+                            <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                        </div>
+                    </section>
+
+                    <section class="example">
+                        <h2>justify-content: space-around</h2>
+                        <div class="flex-container" style="justify-content: space-around">
+                            <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                        </div>
+                    </section>
+
+                    <section class="example">
+                        <h2>justify-content: space-evenly</h2>
+                        <div class="flex-container" style="justify-content: space-evenly">
+                            <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                        </div>
+                    </section>
+
+                </section>
+
+            </article>
+
+<!-- ---------------------- align-items ---------------------- -->
+
+            <article class="align-items">
+                <h1>align-items</h1>
+                <p>Flex items can be aligned in the cross axis of the current line of the flex container, similar to justify-content but in the perpendicular direction. align-items sets the default alignment for all of the flex container's items, including anonymous flex items.</p>
+
+                <section class="examples">
+
+                    <section class="example">
+                        <h2>align-items: flex-start</h2>
+                        <div class="flex-container" style="align-items: flex-start">
+                            <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                        </div>
+                    </section>
+
+                    <section class="example">
+                        <h2>align-items: flex-end</h2>
+                        <div class="flex-container" style="align-items: flex-end">
+                            <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                        </div>
+                    </section>
+
+                    <section class="example">
+                        <h2>align-items: center</h2>
+                        <div class="flex-container" style="align-items: center">
+                            <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                        </div>
+                    </section>
+
+                    <section class="example">
+                        <h2>align-items: baseline</h2>
+                        <div class="flex-container" style="align-items: baseline">
+                            <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                        </div>
+                    </section>
+
+                    <section class="example">
+                        <h2>align-items: stretch</h2>
+                        <div class="flex-container" style="align-items: stretch">
+                            <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                        </div>
+                    </section>
+
+                </section>
+
+            </article>
+
+<!-- ---------------------- align-self ---------------------- -->
+
+<article class="align-self">
+    <h1>align-self <small>(flex item property)</small></h1>
+    <p>Property align-self allows default alignment to be overridden for individual flex items (for anonymous flex items, align-self always matches the value of align-items on their associated flex container).</p>
+
+    <section class="examples">
+
+        <section class="example">
+            <h2>align-self: auto</h2>
+            <div class="flex-container">
+                <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item" style="align-self: auto">3</div><div class="flex-item">4</div>
+            </div>
+        </section>
+
+        <section class="example">
+            <h2>align-self: flex-start</h2>
+            <div class="flex-container">
+                <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item" style="align-self: flex-start">3</div><div class="flex-item">4</div>
+            </div>
+        </section>
+
+        <section class="example">
+            <h2>align-self: flex-end</h2>
+            <div class="flex-container">
+                <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item" style="align-self: flex-end">3</div><div class="flex-item">4</div>
+            </div>
+        </section>
+
+        <section class="example">
+            <h2>align-self: center</h2>
+            <div class="flex-container">
+                <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item" style="align-self: center">3</div><div class="flex-item">4</div>
+            </div>
+        </section>
+
+        <section class="example">
+            <h2>align-self: baseline</h2>
+            <div class="flex-container">
+                <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item" style="align-self: baseline">3</div><div class="flex-item">4</div>
+            </div>
+        </section>
+
+        <section class="example">
+            <h2>align-self: stretch</h2>
+            <div class="flex-container">
+                <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item" style="align-self: stretch">3</div><div class="flex-item">4</div>
+            </div>
+        </section>
+
+    </section>
+
+</article>
+
+
+<!-- ---------------------- align-items ---------------------- -->
+
+<article class="flex-wrap">
+    <h1>flex-wrap</h1>
+    <p>The flex-wrap property controls whether the flex container is single-line or multi-line, and the direction of the cross-axis, which determines the direction new lines are stacked in.</p>
+
+    <section class="examples">
+
+        <section class="example">
+            <h2>flex-wrap: nowrap</h2>
+            <div class="flex-container" style="flex-wrap: nowrap ">
+                <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                <div class="flex-item">5</div><div class="flex-item">6</div><div class="flex-item">7</div><div class="flex-item">8</div>
+            </div>
+        </section>
+
+        <section class="example">
+            <h2>flex-wrap: wrap</h2>
+            <div class="flex-container" style="flex-wrap: wrap">
+                <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                <div class="flex-item">5</div><div class="flex-item">6</div><div class="flex-item">7</div><div class="flex-item">8</div>
+            </div>
+        </section>
+
+        <section class="example">
+            <h2>flex-wrap: wrap-reverse</h2>
+            <div class="flex-container" style="flex-wrap: wrap-reverse">
+                <div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div>
+                <div class="flex-item">5</div><div class="flex-item">6</div><div class="flex-item">7</div><div class="flex-item">8</div>
+            </div>
+        </section>
+
+    </section>
+
+</article>
+
+
+
+
+
+        </main>
+
+    </body>
+</html>
